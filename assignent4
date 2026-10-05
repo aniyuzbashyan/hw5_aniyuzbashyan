@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char **strings = malloc(3 * sizeof(char *));
+
+    if (strings == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
+    printf("Enter 3 strings:\n");
+
+    for (int i = 0; i < 3; i++) {
+        strings[i] = malloc(51 * sizeof(char));
+
+        scanf("%50s", strings[i]);
+    }
+
+    printf("First 3 strings: ");
+
+    for (int i = 0; i < 3; i++) {
+        printf("%s ", strings[i]);
+    }
+
+    char **temp = realloc(strings, 5 * sizeof(char *));
+
+    strings = temp;
+
+    printf("\nEnter 2 more strings:\n");
+
+    for (int i = 3; i < 5; i++) {
+        strings[i] = malloc(51 * sizeof(char));
+
+        scanf("%50s", strings[i]);
+    }
+
+    printf("All strings: ");
+
+    for (int i = 0; i < 5; i++) {
+        printf("%s ", strings[i]);
+    }
+
+    printf("\n");
+    return 0;
+}
